@@ -42,7 +42,7 @@
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Harga</label>
-                        <input type="number" id="harga" required class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        <input type="text" id="harga" required placeholder="Rp 0" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                     </div>
                     <div class="md:col-span-2 flex gap-2">
                         <button type="submit" class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg transition duration-200">
@@ -151,6 +151,16 @@
                 style: 'currency',
                 currency: 'IDR'
             }).format(number);
+        }
+
+        function formatRupiahInput(value) {
+            const number = parseInt(value.replace(/[^,\d]/g, ''));
+            if (isNaN(number)) return '';
+            return 'Rp ' + number.toLocaleString('id-ID');
+        }
+
+        function parseRupiahInput(value) {
+            return parseInt(value.replace(/[^,\d]/g, '')) || 0;
         }
 
         function formatDate(dateString) {
